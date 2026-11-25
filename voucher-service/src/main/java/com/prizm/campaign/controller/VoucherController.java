@@ -5,6 +5,8 @@ import com.prizm.campaign.service.VoucherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.ResponseEntity;
+
 @RestController
 @RequestMapping("/vouchers")
 public class VoucherController {
@@ -13,9 +15,9 @@ public class VoucherController {
     private VoucherService voucherService;
 
     @PostMapping("/{code}/redeem")
-    public RedeemResponse redeem(@PathVariable String code,
+    public ResponseEntity<RedeemResponse> redeem(@PathVariable String code,
                                  @RequestParam String userId) {
-        return voucherService.redeem(code, userId);
+        return ResponseEntity.ok(voucherService.redeem(code, userId));
     }
 
     @PostMapping("/{code}/void")
