@@ -6,6 +6,7 @@ public class RedeemResponse {
     private String voucherCode;
     private Integer remainingStock;
     private String message;
+    private String errorCode;
 
     public static RedeemResponse ok(String code, Integer remaining) {
         RedeemResponse r = new RedeemResponse();
@@ -22,7 +23,14 @@ public class RedeemResponse {
         return r;
     }
 
+    public static RedeemResponse fail(String errorCode, String message) {
+        RedeemResponse r = fail(message);
+        r.errorCode = errorCode;
+        return r;
+    }
+
     public String getResult() { return result; }
+    public String getErrorCode() { return errorCode; }
     public String getVoucherCode() { return voucherCode; }
     public Integer getRemainingStock() { return remainingStock; }
     public String getMessage() { return message; }
